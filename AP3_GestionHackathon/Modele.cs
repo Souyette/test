@@ -5,18 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace AP3_GestionHackathon
 {
     public static class Modele
     {
-        private static AP3_BD_HACKATHON_INITIALEntities maConnexion;
+        private static Entities1 maConnexion;
 
         /// <summary>
         /// initialise la connexion à la BD
         /// </summary>
         public static void init()
         {
-            maConnexion = new AP3_BD_HACKATHON_INITIALEntities();
+            maConnexion = new Entities1();
         }
 
         /// <summary>
@@ -78,7 +79,7 @@ namespace AP3_GestionHackathon
         /// <param name="dateF"></param>
         /// <param name="idOrganisateur"></param>
         /// <returns></returns>
-        public static bool AjoutHackathon(string lieu, string ville, string thematique, string objectifs, string conditions, string affiche, DateTime dateD, DateTime dateF,int idOrganisateur)
+        public static bool AjoutHackathon(string lieu, string ville, string thematique, string objectifs, string conditions, string affiche, DateTime dateD, DateTime dateF,int idOrganisateur, DateTime dateBut, int txtEkip)
         {
             HACKATHON unHackathon;
             bool vretour = true;
@@ -95,7 +96,9 @@ namespace AP3_GestionHackathon
                 unHackathon.dateheuredebuth = dateD;
                 unHackathon.dateheurefinh = dateF;
                 unHackathon.idorganisateur = idOrganisateur;
-       
+                unHackathon.date_butoir = dateBut;
+                unHackathon.nb_equipe_max = txtEkip;
+
                 maConnexion.HACKATHON.Add(unHackathon);
                 maConnexion.SaveChanges();
                                
@@ -141,7 +144,7 @@ namespace AP3_GestionHackathon
         /// <param name="dateF"></param>
         /// <param name="idOrganisateur"></param>
         /// <returns></returns>
-        public static bool ModificationHackathon(int idH, string lieu, string ville, string thematique, string objectifs, string conditions, string affiche, DateTime dateD, DateTime dateF, int idOrganisateur)
+        public static bool ModificationHackathon(int idH, string lieu, string ville, string thematique, string objectifs, string conditions, string affiche, DateTime dateD, DateTime dateF, int idOrganisateur, DateTime dateBut, int txtEkip)
         {
             HACKATHON unHackathon;
             bool vretour = true;
@@ -160,6 +163,8 @@ namespace AP3_GestionHackathon
                 unHackathon.dateheuredebuth = dateD;
                 unHackathon.dateheurefinh = dateF;
                 unHackathon.idorganisateur = idOrganisateur;
+                unHackathon.date_butoir = dateBut;
+                unHackathon.nb_equipe_max = txtEkip;
 
                 maConnexion.SaveChanges();
             }

@@ -82,13 +82,14 @@ namespace AP3_GestionHackathon
         private void Button1_Click(object sender, EventArgs e)
         {
             int idOrga = -1;
+            int txtEkip;
             string lieu, ville, thematique, objectifs, conditions, affiche;
-            DateTime dateDeb, dateFin;
+            DateTime dateDeb, dateFin, dateBut;
 
-            if (tbLieu.Text !="" && tbVille.Text !="" && tbThematique.Text !="")
+            if (tbLieu.Text !="" && tbVille.Text !="" && tbThematique.Text !="" && txtEkipMax.Text !="")
             {
                 // ajout possible si les champs lieu, ville et thématique au moins remplis
-                if (dtDebut.Value < dtFin.Value && dtDebut.Value >= DateTime.Now)
+                if (dtDebut.Value < dtFin.Value && dtDebut.Value >= DateTime.Now && datebutoir.Value < dtDebut.Value)
                 {
                     // ajout possible si la date de début en avant la date de fin et si la date de début est bien supérieure ou égale à la date du jour
                     lieu = tbLieu.Text;
@@ -99,6 +100,10 @@ namespace AP3_GestionHackathon
                     affiche = tbAffiche.Text;
                     dateDeb = dtDebut.Value;
                     dateFin = dtFin.Value;
+                    dateBut = datebutoir.Value;
+                    txtEkip = Convert.ToInt32(txtEkipMax.Text);
+
+
                     if (cbOrganisateur.SelectedIndex != -1)
                     {
                         idOrga = Convert.ToInt32(cbOrganisateur.SelectedValue.ToString());
@@ -106,7 +111,7 @@ namespace AP3_GestionHackathon
 
                     if (etat == EtatGestion.Create) // cas de l'ajout
                     {
-                        if (Modele.AjoutHackathon(lieu, ville, thematique, objectifs, conditions, affiche, dateDeb, dateFin, idOrga))
+                        if (Modele.AjoutHackathon(lieu, ville, thematique, objectifs, conditions, affiche, dateDeb, dateFin, idOrga, dateBut, txtEkip))
                         {
                             MessageBox.Show("Hackathon ajouté " + Modele.RetourneDernierHackathonSaisi());
                             Annuler();
@@ -115,7 +120,7 @@ namespace AP3_GestionHackathon
                     if (etat == EtatGestion.Update) // cas de la mise à jour
                     {
                         HACKATHON H = (HACKATHON)BSListeH.Current;
-                        if (Modele.ModificationHackathon(H.idhackathon, lieu, ville, thematique, objectifs, conditions, affiche, dateDeb, dateFin, idOrga))
+                        if (Modele.ModificationHackathon(H.idhackathon, lieu, ville, thematique, objectifs, conditions, affiche, dateDeb, dateFin, idOrga, dateBut, txtEkip))
                         {
                             MessageBox.Show("Hackathon modifié");
                             gbInfo.Visible = false;
@@ -132,7 +137,7 @@ namespace AP3_GestionHackathon
             }
             else
             {
-                MessageBox.Show("Ajout impossible : Il faut saisir au moins le lieu, la ville et la thématique", "ERREUR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ajout impossible : Il faut saisir au moins le lieu, la ville, la thématique et le nombre d'équipe", "ERREUR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -175,6 +180,16 @@ namespace AP3_GestionHackathon
         private void CbListe_SelectedIndexChanged(object sender, EventArgs e)
         {
             BSListeH_CurrentChanged(sender, e);
+        }
+        private void datebutoir_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void txtEkipMax_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

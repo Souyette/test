@@ -19,7 +19,7 @@ namespace AP3_GestionHackathon
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            BSHackathon.DataSource = Modele.listeHackathons().Select(x => new { x.idhackathon, x.thematique, x.lieu, x.ville, x.dateheuredebuth, x.dateheurefinh, x.objectifs, x.ORGANISATEUR.nom, x.ORGANISATEUR.prenom })
+            BSHackathon.DataSource = Modele.listeHackathons().Select(x => new { x.idhackathon, x.thematique, x.lieu, x.ville, x.dateheuredebuth, x.dateheurefinh, x.objectifs, x.ORGANISATEUR.nom, x.ORGANISATEUR.prenom, x.nb_equipe_max, x.date_butoir })
                            .OrderBy(x => x.dateheuredebuth); 
 
             dgvHackathon.DataSource = BSHackathon;
@@ -32,6 +32,8 @@ namespace AP3_GestionHackathon
             dgvHackathon.Columns[6].HeaderText = "Objectifs";
             dgvHackathon.Columns[7].HeaderText = "Nom Organisateur";
             dgvHackathon.Columns[8].HeaderText = "Prénom Organisateur";
+            dgvHackathon.Columns[9].HeaderText = "Max équipe";
+            dgvHackathon.Columns[10].HeaderText = "Date butoir";
         }
 
         private void BtnFermer_Click(object sender, EventArgs e)
