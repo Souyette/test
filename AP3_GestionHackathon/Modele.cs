@@ -10,14 +10,14 @@ namespace AP3_GestionHackathon
 {
     public static class Modele
     {
-        private static Entities1 maConnexion;
+        private static HackathonEntities maConnexion;
 
         /// <summary>
         /// initialise la connexion à la BD
         /// </summary>
         public static void init()
         {
-            maConnexion = new Entities1();
+            maConnexion = new HackathonEntities();
         }
 
         /// <summary>
@@ -38,11 +38,17 @@ namespace AP3_GestionHackathon
             return maConnexion.ORGANISATEUR.ToList();
         }
 
+
         /// <summary>
         /// Retourne la liste des équipes inscrites à l'hackathon dont l'identifiant est passé en paramètre
         /// </summary>
         /// <param name="idH"></param>
         /// <returns></returns>
+        /// 
+        public static List<ADMINISTRATEUR> listeAdmin()
+        {
+            return maConnexion.ADMINISTRATEUR.ToList();
+        }
         public static List<EQUIPE> listeEquipesParHackathon(int idH)
         {
             // parcourir les équipes et récupérer celle de l'hackathon
@@ -207,5 +213,17 @@ namespace AP3_GestionHackathon
             }
             return vretour;
         }
+
+        //public static bool verifAdmin(string mail, string password)
+        //{
+        //    foreach (ADMINISTRATEUR as admin in listeAdmin())
+        //    {
+        //        if(admin.email == mail && admin.motpasse == password)
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
     }
 }

@@ -13,10 +13,10 @@ namespace AP3_GestionHackathon
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities1 : DbContext
+    public partial class HackathonEntities : DbContext
     {
-        public Entities1()
-            : base("name=Entities1")
+        public HackathonEntities()
+            : base("name=HackathonEntities")
         {
         }
     

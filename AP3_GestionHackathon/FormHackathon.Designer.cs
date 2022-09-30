@@ -151,6 +151,7 @@
 
         #endregion
 
+        private System.Windows.Forms.BindingSource connection;
         private System.Windows.Forms.BindingSource BSHackathon;
         private System.Windows.Forms.DataGridView dgvHackathon;
         private System.Windows.Forms.Button BtnFermer;

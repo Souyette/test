@@ -24,15 +24,14 @@ namespace AP3_GestionHackathon
         public System.DateTime dateheuredebuth { get; set; }
         public System.DateTime dateheurefinh { get; set; }
         public System.DateTime date_butoir { get; set; }
-
         public string lieu { get; set; }
         public string ville { get; set; }
         public string conditions { get; set; }
-        public int nb_equipe_max { get; set; }
         public string thematique { get; set; }
         public string affiche { get; set; }
         public string objectifs { get; set; }
         public Nullable<int> idorganisateur { get; set; }
+        public int nb_equipe_max { get; set; }
     
         public virtual ORGANISATEUR ORGANISATEUR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
